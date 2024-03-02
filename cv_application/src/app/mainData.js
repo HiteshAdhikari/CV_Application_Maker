@@ -1,10 +1,9 @@
 "use client";
+import { useRef, useState } from "react";
 import Cardsec from "./components/cardsec";
 import Display from "./components/display";
-import Print from "./components/print";
-import { useState } from "react";
 
-const Page = () => {
+const mainData = () => {
   const [Data, setData] = useState({
     basicInfo: {
       id: "basicInfo",
@@ -32,15 +31,7 @@ const Page = () => {
         data: [...Data[section].data, detailsUpdate],
       },
     });
-    console.log(Data);
   };
-  return (
-    <div className="flex p-8">
-      <Cardsec info={Data} updateDataInfo={updateData} />
-      <Display info={Data} />
-      {/* <Print /> */}
-    </div>
-  );
 };
 
-export default Page;
+export default mainData;
