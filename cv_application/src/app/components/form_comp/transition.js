@@ -2,58 +2,45 @@ import Section from "./sections/section";
 import Input from "./input";
 import Large_Section from "./sections/lg_sec";
 import { useState } from "react";
-const Transition = ({ section, updateDataInfo }) => {
+const Transition = (props) => {
   // For disabling end date
   const [disableornot, setdisable] = useState(false);
   function disableEndDate() {
     setdisable(!disableornot);
   }
+  const formData = props.formData;
+  const inputChange = props.inputChange;
 
   const renderBasicInfo = () => {
-    const [formData, setFormData] = useState({
-      fullname: "",
-      email: "",
-      phone: "",
-      location: "",
-      githubLink: "",
-    });
-    const handleInputChange = (fieldData, value) => {
-      // Update the formData state with the new value
-      setFormData((prevState) => ({
-        ...prevState,
-        [fieldData]: value,
-      }));
-      updateDataInfo("basicInfo", formData);
-    };
-
     return (
       <>
         <Section>
           <Input
             value={formData.fullname}
-            onChange={(e) => handleInputChange("fullname", e.target.value)}
+            onChange={(e) => inputChange("fullname", e.target.value)}
             set_width="1/2"
             label="Name"
             className="border-2 text-sm mt-1 rounded-md p-1 w-full  bg-slate-100 focus:outline-none"
             type="text"
             placeholder="eg: Alex"
+            required
           />
           <Input
             value={formData.email}
-            onChange={(e) => {
-              handleInputChange("email", e.target.value);
-            }}
+            onChange={(e) => inputChange("email", e.target.value)}
             set_width="1/2"
             label="Email"
             className="border-2 text-sm mt-1 rounded-md p-1 w-full  bg-slate-100 focus:outline-none"
             placeholder="eg: example@gmail.com"
+            required
           />
         </Section>
+
         <Section>
           <Input
             value={formData.phone}
             onChange={(e) => {
-              handleInputChange("phone", e.target.value);
+              inputChange("phone", e.target.value);
             }}
             set_width="1/2"
             label="Phone No."
@@ -62,32 +49,38 @@ const Transition = ({ section, updateDataInfo }) => {
             placeholder="eg: 987643XXXX"
             maxLength="10"
             pattern="[0-9]*"
+            required
           />
           <Input
             value={formData.location}
             onChange={(e) => {
-              handleInputChange("location", e.target.value);
+              inputChange("location", e.target.value);
             }}
             set_width="1/2"
             label="Location"
             className="border-2 text-sm mt-1 rounded-md p-1 w-full  bg-slate-100 focus:outline-none"
             type="text"
             placeholder="eg: New York"
+            required
           />
         </Section>
         <Large_Section>
           <Input
             value={formData.githubLink}
             onChange={(e) => {
-              handleInputChange("githubLink", e.target.value);
+              inputChange("githubLink", e.target.value);
             }}
             set_width="1/1"
             label="GitHub (Optional)"
             className="border-2 w-full text-sm mt-1 rounded-md p-1 bg-slate-100 focus:outline-none"
             type="text"
             placeholder="eg: github.com/alex"
+            required
           />
         </Large_Section>
+        <button className="w-full bg-slate-200 font-semibold rounded-md p-1 mt-2 hover:bg-slate-300 ">
+          Submit
+        </button>
       </>
     );
   };
@@ -97,43 +90,71 @@ const Transition = ({ section, updateDataInfo }) => {
       <>
         <Section>
           <Input
+            value={formData.name}
+            onChange={(e) => {
+              inputChange("name", e.target.value);
+            }}
             set_width="1/2"
             label="School/University"
             className="border-2 text-sm mt-1 rounded-md p-1 w-full  bg-slate-100 focus:outline-none"
             type="text"
             placeholder="eg: AMITY"
+            required
           />
           <Input
+            value={formData.location}
+            onChange={(e) => {
+              inputChange("location", e.target.value);
+            }}
             set_width="1/2"
             label="Location"
             className="border-2 text-sm mt-1 rounded-md p-1 w-full  bg-slate-100 focus:outline-none"
             placeholder="eg: Noida, Delhi"
+            required
           />
         </Section>
         <Section>
           <Input
+            value={formData.degree}
+            onChange={(e) => {
+              inputChange("degree", e.target.value);
+            }}
             set_width="1/2"
             label="Degree"
             className="border-2 text-sm mt-1 rounded-md p-1 w-full  bg-slate-100 focus:outline-none"
             type="text"
             placeholder="eg: B.Tech, MBA"
+            required
           />
           <Input
+            value={formData.graduate}
+            onChange={(e) => {
+              inputChange("graduate", e.target.value);
+            }}
             set_width="1/2"
             label="Graduation Date"
             className="border-2 text-sm mt-1 rounded-md p-1 w-full  bg-slate-100 focus:outline-none"
             type="month"
+            required
           />
         </Section>
         <Large_Section>
           <Input
+            value={formData.specilization}
+            onChange={(e) => {
+              inputChange("specilization", e.target.value);
+            }}
             set_width="1/1"
             label="Specilization"
             className="border-2 text-sm w-full mt-1 rounded-md p-1 bg-slate-100 focus:outline-none"
             type="text"
             placeholder="eg: Computer Science, Information Technology"
+            required
           />
         </Large_Section>
+        <button className="w-full bg-slate-200 font-semibold rounded-md p-1 mt-2 hover:bg-slate-300 ">
+          Submit
+        </button>
       </>
     );
   };
@@ -143,25 +164,40 @@ const Transition = ({ section, updateDataInfo }) => {
       <>
         <Section>
           <Input
+            value={formData.name}
+            onChange={(e) => {
+              inputChange("name", e.target.value);
+            }}
             set_width="1/2"
             label="Company Name"
             className="border-2 text-sm mt-1 rounded-md p-1 w-full  bg-slate-100 focus:outline-none"
             type="text"
             placeholder="eg: TCS, Wipro"
+            required
           />
           <Input
+            value={formData.location}
+            onChange={(e) => {
+              inputChange("location", e.target.value);
+            }}
             set_width="1/2"
             label="Location"
             className="border-2 text-sm mt-1 rounded-md p-1 w-full  bg-slate-100 focus:outline-none"
             placeholder="eg: Gurugram,Delhi"
+            required
           />
         </Section>
         <Section>
           <Input
+            value={formData.startDate}
+            onChange={(e) => {
+              inputChange("startDate", e.target.value);
+            }}
             set_width="1/2"
             label="Start Date"
             className="border-2 text-sm mt-1 rounded-md p-1 w-full  bg-slate-100 focus:outline-none"
             type="month"
+            required
           />
           <div className="w-1/2 mr-1">
             <div className="flex justify-between">
@@ -178,31 +214,49 @@ const Transition = ({ section, updateDataInfo }) => {
               </div>
             </div>
             <input
+              value={formData.endDate}
+              onChange={(e) => {
+                inputChange("endDate", e.target.value);
+              }}
               disabled={disableornot}
               id="end_dt"
               type="month"
               className="border-2 text-sm mt-1 rounded-md p-1 w-full  bg-slate-100 focus:outline-none disabled:cursor-not-allowed"
+              required
             />
           </div>
         </Section>
         <Large_Section>
           <Input
+            value={formData.jobTitle}
+            onChange={(e) => {
+              inputChange("jobTitle", e.target.value);
+            }}
             set_width="1/1"
             label="Job Title"
             className="border-2 text-sm w-full mt-1 rounded-md p-1 bg-slate-100 focus:outline-none"
             type="text"
             placeholder="eg: Project Manager, SDE, etc"
+            required
           />
         </Large_Section>
         <Large_Section>
           <div className="mr-1">
             <label className="block font-semibold">Job Description</label>
             <textarea
+              value={formData.jobDesc}
+              onChange={(e) => {
+                inputChange("jobDesc", e.target.value);
+              }}
               className="border-2 mt-1 text-sm rounded-md p-1 w-full bg-slate-100 focus:outline-none"
               placeholder="Enter Job Description"
+              required
             ></textarea>
           </div>
         </Large_Section>
+        <button className="w-full bg-slate-200 font-semibold rounded-md p-1 mt-2 hover:bg-slate-300 ">
+          Submit
+        </button>
       </>
     );
   };
@@ -212,27 +266,40 @@ const Transition = ({ section, updateDataInfo }) => {
       <>
         <Section>
           <Input
+            value={formData.title}
+            onChange={(e) => {
+              inputChange("title", e.target.value);
+            }}
             set_width="full"
             label="Skill Group Name"
             className="border-2 mt-1 text-sm rounded-md p-1 w-full  bg-slate-100 focus:outline-none"
             type="text"
             placeholder="eg: Programming, Languages"
+            required
           />
         </Section>
         <Section>
           <Input
+            value={formData.skills}
+            onChange={(e) => {
+              inputChange("skills", e.target.value);
+            }}
             set_width="full"
             label="Skills"
             className="border-2 mt-1 text-sm rounded-md p-1 w-full  bg-slate-100 focus:outline-none"
             type="text"
             placeholder="eg: Java, React, Python etc"
+            required
           />
         </Section>
+        <button className="w-full bg-slate-200 font-semibold rounded-md p-1 mt-2 hover:bg-slate-300 ">
+          Submit
+        </button>
       </>
     );
   };
   const renderSection = () => {
-    switch (section) {
+    switch (props.section) {
       case "basicInfo":
         return renderBasicInfo();
       case "educationInfo":

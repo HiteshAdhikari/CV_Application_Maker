@@ -1,9 +1,18 @@
 "use client";
 import React from "react";
 
-const FormContainer = ({ title, isOpen, toggleAccordion, children }) => {
+const FormContainer = ({
+  title,
+  isOpen,
+  toggleAccordion,
+  onsubmit,
+  children,
+}) => {
   return (
-    <form className="mt-3.5 p-2 border-2 border-black rounded-lg ">
+    <form
+      onSubmit={(e) => onsubmit(e)}
+      className="mt-3.5 p-2 border-2 border-black rounded-lg "
+    >
       <div
         className="text-2xl hover:cursor-pointer flex justify-between group"
         onClick={toggleAccordion} // Call the toggle function when clicked

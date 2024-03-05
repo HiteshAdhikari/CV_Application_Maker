@@ -8,35 +8,36 @@ const Page = () => {
   const [Data, setData] = useState({
     basicInfo: {
       id: "basicInfo",
-      data: [],
+      details: [],
     },
     educationInfo: {
       id: "educationInfo",
-      data: [],
+      details: [],
     },
     experienceInfo: {
       id: "experienceInfo",
-      data: [],
+      details: [],
     },
     skillInfo: {
       id: "skillInfo",
-      data: [],
+      details: [],
     },
   });
 
   const updateData = (section, detailsUpdate) => {
-    setData({
-      ...Data,
+    setData((prevData) => ({
+      ...prevData,
       [section]: {
-        ...Data[section],
-        data: [...Data[section].data, detailsUpdate],
+        ...prevData[section],
+        details: [...prevData[section].details, detailsUpdate],
       },
-    });
-    console.log(Data);
+    }));
   };
+  console.log(Data);
+
   return (
     <div className="flex p-8">
-      <Cardsec info={Data} updateDataInfo={updateData} />
+      <Cardsec info={Data} updateData={updateData} />
       <Display info={Data} />
       {/* <Print /> */}
     </div>

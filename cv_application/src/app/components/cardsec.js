@@ -3,15 +3,164 @@ import React, { useState } from "react";
 import FormContainer from "./form";
 import Transition from "./form_comp/transition";
 
+// Basic Details
+const BasicDetails = (props) => {
+  const updateData = props.updateData;
+  const generateInitialState = () => ({
+    fullname: "",
+    email: "",
+    phone: "",
+    location: "",
+    githubLink: "",
+  });
+  const [formData, setFormData] = useState(generateInitialState());
+  const handleInputChange = (fieldData, value) => {
+    setFormData({
+      ...formData,
+      [fieldData]: value,
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateData("basicInfo", formData);
+    setFormData(generateInitialState());
+  };
+  return (
+    <FormContainer
+      title="Basic Info"
+      sec="basicInfo"
+      isOpen={props.isOpen}
+      toggleAccordion={props.toggleAccordion}
+      onsubmit={handleSubmit}
+    >
+      <Transition
+        formData={formData}
+        inputChange={handleInputChange}
+        section="basicInfo"
+      />
+    </FormContainer>
+  );
+};
+// Education Details
+const EducationDetails = (props) => {
+  const updateData = props.updateData;
+  const generateInitialState = () => ({
+    name: "",
+    location: "",
+    degree: "",
+    graduate: "",
+    specilization: "",
+  });
+  const [formData, setFormData] = useState(generateInitialState());
+  const handleInputChange = (fieldData, value) => {
+    setFormData({
+      ...formData,
+      [fieldData]: value,
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateData("educationInfo", formData);
+    setFormData(generateInitialState());
+  };
+  return (
+    <FormContainer
+      title="Education Info"
+      isOpen={props.isOpen}
+      toggleAccordion={props.toggleAccordion}
+      onsubmit={handleSubmit}
+    >
+      <Transition
+        formData={formData}
+        inputChange={handleInputChange}
+        section="educationInfo"
+      />
+    </FormContainer>
+  );
+};
+// Experience Details
+const ExperienceDetails = (props) => {
+  const updateData = props.updateData;
+  const generateInitialState = () => ({
+    name: "",
+    location: "",
+    startDate: "",
+    endDate: "",
+    jobTitle: "",
+    jobDesc: "",
+  });
+  const [formData, setFormData] = useState(generateInitialState());
+  const handleInputChange = (fieldData, value) => {
+    setFormData({
+      ...formData,
+      [fieldData]: value,
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateData("experienceInfo", formData);
+    setFormData(generateInitialState());
+  };
+  return (
+    <FormContainer
+      title="Experience Info"
+      isOpen={props.isOpen}
+      toggleAccordion={props.toggleAccordion}
+      onsubmit={handleSubmit}
+    >
+      <Transition
+        formData={formData}
+        inputChange={handleInputChange}
+        section="experienceInfo"
+      />
+    </FormContainer>
+  );
+};
+// Skill Details
+const SkillDetails = (props) => {
+  const updateData = props.updateData;
+  const generateInitialState = () => ({
+    title: "",
+    skills: "",
+  });
+  const [formData, setFormData] = useState(generateInitialState());
+  const handleInputChange = (fieldData, value) => {
+    setFormData({
+      ...formData,
+      [fieldData]: value,
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateData("skillInfo", formData);
+    setFormData(generateInitialState());
+  };
+  return (
+    <FormContainer
+      title="Skill Info"
+      isOpen={props.isOpen}
+      toggleAccordion={props.toggleAccordion}
+      onsubmit={handleSubmit}
+    >
+      <Transition
+        formData={formData}
+        inputChange={handleInputChange}
+        section="skillsInfo"
+      />
+    </FormContainer>
+  );
+};
+
 const Cardsec = (props) => {
   const information = props.info;
-  const updateDataInformation = props.updateDataInfo;
+  const updateData = props.updateData;
 
   const [openAccordion, setOpenAccordion] = useState(null);
 
   const toggleAccordion = (index) => {
     setOpenAccordion(index === openAccordion ? null : index);
   };
+
   return (
     <>
       <div className="editor print:hidden  w-1/3 ">
@@ -25,53 +174,46 @@ const Cardsec = (props) => {
           </button>
         </div>
 
-        <FormContainer
+        {/* <FormContainer
           title="Basic Info"
           isOpen={openAccordion === 0}
           toggleAccordion={() => toggleAccordion(0)}
+          sec="basicInfo"
+          info={information.basicInfo}
+          updateDataInfo={updateDataInformation}
         >
           <Transition
             info={information.basicInfo}
             updateDataInfo={updateDataInformation}
             section="basicInfo"
           />
-        </FormContainer>
+        </FormContainer> */}
+        <BasicDetails
+          info={information.basicInfo}
+          updateData={updateData}
+          isOpen={openAccordion === 0}
+          toggleAccordion={() => toggleAccordion(0)}
+        />
 
-        <FormContainer
-          title="Education Info"
+        <EducationDetails
+          info={information.educationInfo}
+          updateData={updateData}
           isOpen={openAccordion === 1}
           toggleAccordion={() => toggleAccordion(1)}
-        >
-          <Transition
-            info={information.educationInfo}
-            updateDataInfo={updateDataInformation}
-            section="educationInfo"
-          />
-        </FormContainer>
+        />
 
-        <FormContainer
-          title="Experience Info"
+        <ExperienceDetails
+          info={information.educationInfo}
+          updateData={updateData}
           isOpen={openAccordion === 2}
           toggleAccordion={() => toggleAccordion(2)}
-        >
-          <Transition
-            info={information.experienceInfo}
-            updateDataInfo={updateDataInformation}
-            section="educationInfo"
-          />
-        </FormContainer>
-
-        <FormContainer
-          title="Skill Info"
+        />
+        <SkillDetails
+          info={information.educationInfo}
+          updateData={updateData}
           isOpen={openAccordion === 3}
           toggleAccordion={() => toggleAccordion(3)}
-        >
-          <Transition
-            info={information.skillInfo}
-            updateDataInfo={updateDataInformation}
-            section="educationInfo"
-          />
-        </FormContainer>
+        />
       </div>
     </>
   );

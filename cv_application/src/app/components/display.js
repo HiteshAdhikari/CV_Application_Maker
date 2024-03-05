@@ -9,8 +9,8 @@ import {
   Phone,
 } from "react-feather";
 
-const Display = (props) => {
-  const mainData = props.info;
+const Display = ({ info }) => {
+  const latestData = info.basicInfo.details[info.basicInfo.details.length - 1];
   return (
     <div
       className="block print:block"
@@ -23,135 +23,129 @@ const Display = (props) => {
       }}
     >
       {/* Basic Info*/}
-      <section className="mb-12">
-        <h1 className="text-3xl font-bold mb-4 tracking-widest">
-          HITESH ADHIKARI
-          {/* {console.log(mainData.basicInfo.data.fullname)} */}
-        </h1>
-        <div
-          className="flex text-
+      {latestData && (
+        <section className="mb-12">
+          <h1 className="text-3xl font-bold mb-4 tracking-widest">
+            {latestData.fullname}
+          </h1>
+          <div
+            className="flex text-
          gap-28"
-        >
-          <ul>
-            <li className="flex gap-2 items-center ">
-              <AtSign className="size-4" />
-              example@email.com
-            </li>
-            <li className="flex gap-2 items-center ">
-              <Phone className="size-4" />
-              123-456-7890
-            </li>
-          </ul>
-          <ul>
-            <li className="flex gap-2 items-center ">
-              <MapPin className="size-4" />
-              New York, NY
-            </li>
-            <li className="flex gap-2 items-center ">
-              <GitHub className="size-4" />
-              github/hiteshadhikari
-            </li>
-          </ul>
-        </div>
-      </section>
+          >
+            <ul>
+              <li className="flex gap-2 items-center ">
+                <AtSign className="size-4" />
+                {latestData.email}
+              </li>
+              <li className="flex gap-2 items-center ">
+                <Phone className="size-4" />
+                {latestData.phone}
+              </li>
+            </ul>
+            <ul>
+              <li className="flex gap-2 items-center ">
+                <MapPin className="size-4" />
+                {latestData.location}
+              </li>
+              <li className="flex gap-2 items-center ">
+                <GitHub className="size-4" />
+                {latestData.githubLink}
+              </li>
+            </ul>
+          </div>
+        </section>
+      )}
 
       <div className=" flex flex-row gap-16">
         {/* Education & Skills Info*/}
 
-        {/* Education Info */}
         <section className="flex w-1/2 flex-col gap-20">
-          <div className="education_info ">
-            <h1 className="text-2xl font-bold mb-4 tracking-wider">
-              EDUCATION
-            </h1>
-            <div className="mb-4">
-              <h3 className=" text-xl font-semibold tracking-tight">
-                Example University
-              </h3>
-              <ul className="text-base">
-                <li>Boston, MA</li>
-                <li>M.S. in Computer Science</li>
-                <li>May 2018</li>
-              </ul>
-            </div>
+          {info.educationInfo.details[0] && (
+            <div className="education_info ">
+              <h1 className="text-2xl font-bold mb-4 tracking-wider">
+                EDUCATION
+              </h1>
+              <div className="mb-4">
+                <h3 className=" text-xl font-semibold tracking-tight">
+                  {info.educationInfo.details[0].name}
+                </h3>
+                {
+                  <ul className="text-base">
+                    <li>{info.educationInfo.details[0].location}</li>
+                    <li>
+                      {info.educationInfo.details[0].degree} {"in"}{" "}
+                      {info.educationInfo.details[0].specilization}
+                    </li>
+                    <li>{info.educationInfo.details[0].graduate}</li>
+                  </ul>
+                }
+              </div>
 
-            <div>
-              <h3 className="text-xl font-semibold tracking-tight">
-                Example School
-              </h3>
-              <ul className="text-base ">
-                <li>Boston, MA</li>
-                <li>M.S. in Computer Science</li>
-                <li>May 2018</li>
-              </ul>
+              <div>
+                <h3 className="text-xl font-semibold tracking-tight">
+                  Example School
+                </h3>
+                <ul className="text-base ">
+                  <li>Boston, MA</li>
+                  <li>M.S. in Computer Science</li>
+                  <li>May 2018</li>
+                </ul>
+              </div>
             </div>
-          </div>
+          )}
 
           {/*Skills Info  */}
-          <div className="flex flex-col">
-            <h1 className="text-2xl font-bold mb-4 tracking-wider">SKILLS</h1>
-            <div className="mb-4">
-              <h3 className="text-xl font-semibold tracking-tight">
-                Programming
-              </h3>
-              <ul className="text-base">
-                <li>Javascript</li>
-                <li>React</li>
-                <li>C++</li>
-                <li>HTML/CSS</li>
-              </ul>
+          {info.skillInfo.details[0] && (
+            <div className="flex flex-col">
+              <h1 className="text-2xl font-bold mb-4 tracking-wider">SKILLS</h1>
+              {info.skillInfo.details.map((skill) => {
+                const subSkills = skill.skills
+                  ? skill.skills.split(", ")
+                  : null;
+                return (
+                  <div key={skill.title} className="mb-4">
+                    <h3 className="text-xl font-semibold tracking-tight">
+                      {skill.title}
+                    </h3>
+                    <ul className="text-base">
+                      {subSkills.map((skill) => {
+                        return <li key={skill}>{skill}</li>;
+                      })}
+                    </ul>
+                  </div>
+                );
+              })}
             </div>
-            <div className="mb-4">
-              <h3 className=" text-xl font-semibold tracking-tight">
-                Languages
-              </h3>
-              <ul className="text-base">
-                <li>English</li>
-                <li>Spanish</li>
-              </ul>
-            </div>
-          </div>
+          )}
         </section>
 
         {/* Experience Info */}
-        <section className="w-full">
-          <div className="education_info">
-            <h1 className="text-2xl font-bold mb-4 tracking-wider">
-              EXPERIENCE
-            </h1>
-            <div className="mb-6">
-              <h3 className=" mb-2 text-xl font-semibold tracking-tight">
-                Example Studio
-              </h3>
-              <ul className="text-base">
-                <li>Boston, MA</li>
-                <li>June 2018 - Present</li>
-                <li>
-                  Magna etiam tempor orci eu. Sollicitudin tempor id eu nisl
-                  nunc mi ipsum. Aliquam purus sit amet luctus venenatis lectus
-                  magna fringilla. Mi ipsum faucibus vitae aliquet.
-                </li>
-              </ul>
+        {info.experienceInfo.details[0] && (
+          <section className="w-full">
+            <div className="education_info">
+              <h1 className="text-2xl font-bold mb-4 tracking-wider">
+                EXPERIENCE
+              </h1>
+              {info.experienceInfo.details.map((experience) => (
+                <div key={experience.name} className="mb-6">
+                  <h3 className=" mb-2 text-xl font-semibold tracking-tight">
+                    {experience.name}
+                  </h3>
+                  <ul className="text-base">
+                    <li>{experience.location}</li>
+                    <li>
+                      {experience.startDate}
+                      {" - "}
+                      {experience.endDate}
+                    </li>
+                    <li>Worked as {experience.jobTitle}</li>
+                    <li>{experience.jobDesc}</li>
+                  </ul>
+                </div>
+              ))}
             </div>
-
-            <div>
-              <h3 className=" mb-2 text-xl font-semibold tracking-tight">
-                Example School
-              </h3>
-              <ul className="text-base">
-                <li>Boston, MA</li>
-                <li>August 2014 - September 2016</li>
-                <li>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
+          </section>
+        )}
       </div>
     </div>
   );
