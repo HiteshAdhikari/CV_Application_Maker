@@ -174,20 +174,6 @@ const Cardsec = (props) => {
           </button>
         </div>
 
-        {/* <FormContainer
-          title="Basic Info"
-          isOpen={openAccordion === 0}
-          toggleAccordion={() => toggleAccordion(0)}
-          sec="basicInfo"
-          info={information.basicInfo}
-          updateDataInfo={updateDataInformation}
-        >
-          <Transition
-            info={information.basicInfo}
-            updateDataInfo={updateDataInformation}
-            section="basicInfo"
-          />
-        </FormContainer> */}
         <BasicDetails
           info={information.basicInfo}
           updateData={updateData}
