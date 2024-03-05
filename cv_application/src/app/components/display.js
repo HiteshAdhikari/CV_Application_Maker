@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  AtSign,
-  Calendar,
-  GitHub,
-  Linkedin,
-  MapPin,
-  Paperclip,
-  Phone,
-} from "react-feather";
+import { AtSign, GitHub, MapPin, Phone } from "react-feather";
 
 const Display = ({ info }) => {
   const latestData = info.basicInfo.details[info.basicInfo.details.length - 1];
@@ -58,39 +50,30 @@ const Display = ({ info }) => {
 
       <div className=" flex flex-row gap-16">
         {/* Education & Skills Info*/}
-
         <section className="flex w-1/2 flex-col gap-20">
           {info.educationInfo.details[0] && (
             <div className="education_info ">
               <h1 className="text-2xl font-bold mb-4 tracking-wider">
                 EDUCATION
               </h1>
-              <div className="mb-4">
-                <h3 className=" text-xl font-semibold tracking-tight">
-                  {info.educationInfo.details[0].name}
-                </h3>
-                {
-                  <ul className="text-base">
-                    <li>{info.educationInfo.details[0].location}</li>
-                    <li>
-                      {info.educationInfo.details[0].degree} {"in"}{" "}
-                      {info.educationInfo.details[0].specilization}
-                    </li>
-                    <li>{info.educationInfo.details[0].graduate}</li>
-                  </ul>
-                }
-              </div>
-
-              <div>
-                <h3 className="text-xl font-semibold tracking-tight">
-                  Example School
-                </h3>
-                <ul className="text-base ">
-                  <li>Boston, MA</li>
-                  <li>M.S. in Computer Science</li>
-                  <li>May 2018</li>
-                </ul>
-              </div>
+              {info.educationInfo.details.map((education) => {
+                return (
+                  <div className="mb-4">
+                    <h3 className=" text-xl font-semibold tracking-tight">
+                      {education.name}
+                    </h3>
+                    {
+                      <ul className="text-base">
+                        <li>{education.location}</li>
+                        <li>
+                          {education.degree} {"in"} {education.specilization}
+                        </li>
+                        <li>{education.graduate}</li>
+                      </ul>
+                    }
+                  </div>
+                );
+              })}
             </div>
           )}
 
