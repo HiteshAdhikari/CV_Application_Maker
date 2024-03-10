@@ -58,7 +58,7 @@ const Display = ({ info }) => {
               </h1>
               {info.educationInfo.details.map((education) => {
                 return (
-                  <div className="mb-4">
+                  <div key={education.name} className="mb-4">
                     <h3 className=" text-xl font-semibold tracking-tight">
                       {education.name}
                     </h3>
@@ -86,9 +86,9 @@ const Display = ({ info }) => {
                   ? skill.skills.split(", ")
                   : null;
                 return (
-                  <div key={skill.title} className="mb-4">
+                  <div key={skill.name} className="mb-4">
                     <h3 className="text-xl font-semibold tracking-tight">
-                      {skill.title}
+                      {skill.name}
                     </h3>
                     <ul className="text-base">
                       {subSkills.map((skill) => {
@@ -118,7 +118,7 @@ const Display = ({ info }) => {
                     <li>{experience.location}</li>
                     <li>
                       {experience.startDate}
-                      {" - "}
+                      {" to "}
                       {experience.endDate}
                     </li>
                     <li>Worked as {experience.jobTitle}</li>

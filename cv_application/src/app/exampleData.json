@@ -1,0 +1,67 @@
+{
+  "basicInfo": {
+    "id": "basicInfo",
+    "details": [
+      {
+        "fullname": "Your Name",
+        "email": "example@gmail.com",
+        "phone": "Phone",
+        "location": "Location",
+        "githubLink": "https://wwww.github.com"
+      }
+    ]
+  },
+  "educationInfo": {
+    "id": "educationInfo",
+    "details": [
+      {
+        "name": "Institute Name 1",
+        "location": "Location",
+        "degree": "Degree Name",
+        "graduate": "Graduate Year",
+        "specilization": "Specilization"
+      },
+      {
+        "name": "Institute Name 1",
+        "location": "Location",
+        "degree": "Degree Name",
+        "graduate": "Graduate Year",
+        "specilization": "Specilization"
+      }
+    ]
+  },
+  "experienceInfo": {
+    "id": "experienceInfo",
+    "details": [
+      {
+        "name": "Company Name 1",
+        "location": "Location",
+        "startDate": "2020-3",
+        "endDate": "2024-5",
+        "jobTitle": "Job Title",
+        "jobDesc": "Led a team of developers in the design and implementation of a scalable microservices architecture for a high-traffic e-commerce platform.Collaborated with product managers and stakeholders to gather requirements, prioritize tasks, and define project timelines."
+      },
+      {
+        "name": "Company Name 2",
+        "location": "Location",
+        "startDate": "2020-3",
+        "endDate": "2024-5",
+        "jobTitle": "Job Title",
+        "jobDesc": "Led a team of developers in the design and implementation of a scalable microservices architecture for a high-traffic e-commerce platform.Collaborated with product managers and stakeholders to gather requirements, prioritize tasks, and define project timelines."
+      }
+    ]
+  },
+  "skillInfo": {
+    "id": "skillInfo",
+    "details": [
+      {
+        "name": "Skills Heading 1",
+        "skills": "skill 1, skill 2, skill 3"
+      },
+      {
+        "name": "Skills Heading 2",
+        "skills": "skill 1, skill 2, skill 3"
+      }
+    ]
+  }
+}

@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.print-agreement {
+    margin: 1em;
+    /* padding: 1em; */
+}
+
 @media print {
     .print\:block {
         margin: 0;
